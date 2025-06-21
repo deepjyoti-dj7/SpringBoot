@@ -1,15 +1,15 @@
 package com.dj.journalApp.controller;
 
 import com.dj.journalApp.entity.JournalEntry;
+import com.dj.journalApp.entity.User;
 import com.dj.journalApp.service.JournalEntryService;
+import com.dj.journalApp.service.UserService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +20,12 @@ public class JournalEntryController {
     @Autowired
     private JournalEntryService journalEntryService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping
-    public ResponseEntity<List<JournalEntry>> getAll() {
+    public ResponseEntity<List<JournalEntry>> getAllJournalEntriesOfUser(@PathVariable String userName) {
+        userService.findByUserName(userName);
         List<JournalEntry> allEntries = journalEntryService.getAll();
         if (allEntries != null && !allEntries.isEmpty()) {
             return new ResponseEntity<>(allEntries, HttpStatus.OK);
@@ -41,7 +45,6 @@ public class JournalEntryController {
     @PostMapping
     public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry myEntry) {
         try {
-            myEntry.setDate(LocalDateTime.now());
             journalEntryService.saveEntry(myEntry);
             return new ResponseEntity<>(myEntry, HttpStatus.CREATED);
         }
