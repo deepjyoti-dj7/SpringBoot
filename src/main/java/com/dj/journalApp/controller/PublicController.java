@@ -14,13 +14,13 @@ public class PublicController {
 
     @GetMapping("/healthCheck")
     public String healthCheck() {
-        return "OK";
+        return "JournalApp is OK!";
     }
 
 
     @PostMapping("/createUser")
     public User createUser(@RequestBody User user) {
-        userService.saveEntry(user);
+        userService.saveNewUser(user);
         return user;
     }
 }
