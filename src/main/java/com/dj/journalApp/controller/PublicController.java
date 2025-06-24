@@ -17,7 +17,6 @@ public class PublicController {
         return "JournalApp is OK!";
     }
 
-
     @PostMapping("/createUser")
     public User createUser(@RequestBody User user) {
         userService.saveNewUser(user);
