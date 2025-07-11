@@ -27,9 +27,6 @@ public class UserScheduler {
     private UserRepositoryImpl userRepository;
 
     @Autowired
-    private SentimentAnalysisService sentimentAnalysisService;
-
-    @Autowired
     private AppCache appCache;
 
     @Scheduled(cron = "0 0 9 * * SUN")

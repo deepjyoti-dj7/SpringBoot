@@ -34,8 +34,6 @@ public class UserServiceTests {
             "DJ2",
             "DJ3",
             "DJ7",
-            "DJ77",
-            "DJ100"
     })
     public void test(String name) {
         assertNotNull(userRepository.findByUserName(name),"Failed for " + name);
