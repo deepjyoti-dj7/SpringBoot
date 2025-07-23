@@ -20,11 +20,8 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI myCustomConfig(){
         return new OpenAPI()
-                .info(
-                        new Info().title("Journal App APIs")
-                                .description("By Vipul")
-                )
-                .servers(Arrays.asList(new Server().url("http://localhost:8081").description("local"),
+                .info(new Info().title("Journal App APIs").description("By DJ"))
+                .servers(Arrays.asList(new Server().url("http://localhost:8080").description("local"),
                         new Server().url("http://localhost:8082").description("live")))
                 .tags(Arrays.asList(
                         new Tag().name("Public APIs"),
